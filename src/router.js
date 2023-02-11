@@ -31,4 +31,23 @@ router.post("/join", (req, res) => {
   });
 });
 
+router.put("/updatevideo", (req, res) => {
+  const { roomCode, videoURL } = req.body;
+  Room.findOneAndUpdate(
+    { roomCode: roomCode },
+    { videoURL: videoURL },
+    (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+      }
+    }
+  );
+
+  res.send({
+    message: "YouTube link updated",
+  });
+});
+
 module.exports = router;
